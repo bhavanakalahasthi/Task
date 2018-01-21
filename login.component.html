@@ -1,0 +1,52 @@
+<div class="main-content">
+  <h1> Login </h1>
+  <form novalidate [formGroup]="form" (ngSubmit)="loginUser(form)">
+    <div class="form-group">
+      <label><b>Name</b></label>
+      <input type="text" class="form-control" formControlName="name"/>
+      <div class="alert alert-danger"
+      *ngIf="!form.get('name').valid && form.get('name').touched">
+        <div *ngIf="form.get('name').hasError('required')">
+          name is required
+        </div>
+        <div *ngIf="form.get('name').hasError('pattern')">
+          Cannt accept digits
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" formControlName="email"/>
+      <div class="alert alert-danger" *ngIf="form.get('email').touched && !form.get('email').valid">
+       <div *ngIf="form.get('email').hasError('required')">
+      email is required
+    </div>
+        <div *ngIf="form.get('email') != form.get('email')">
+          Enter email in format ex: xyz@mail.com
+        </div>
+
+    </div>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+    <input type="password" class="form-control" formControlName="psw"/>
+    <div class="alert alert-danger" *ngIf="form.get('psw').touched && form.get('psw').invalid">
+       <div *ngIf="form.get('psw').hasError('required')">
+      password is required
+    </div>
+        <div *ngIf="form.get('psw').hasError('pattern')">
+          Password must contain a <li>uppercase letter</li>
+          <li> diigts</li> 
+          <li> lowercaseletter</li>
+          <li>Atleast 8 chars</li>
+        </div>
+
+    </div>
+  </div>
+
+   
+    <button type="submit" name="button" >login</button>
+  </form>
+  
+
+</div>

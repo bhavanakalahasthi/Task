@@ -1,0 +1,100 @@
+<div class="main-content">
+  <h1> Registration </h1>
+  <form novalidate [formGroup]="form" (ngSubmit)="addUser(form)">
+    <div class="form-group">
+      <label><b>Name:</b></label>
+      <input type="text" class="form-control" formControlName="name"/>
+      <div class="alert alert-danger"
+      *ngIf="!form.get('name').valid && form.get('name').touched">
+        <div *ngIf="form.get('name').hasError('required')">
+          name is required
+        </div>
+        <div *ngIf="form.get('name').hasError('pattern')">
+          Cannt accept digits
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Contact</label>
+      <input type="text" class="form-control" formControlName="contact"/>
+      <div class="alert alert-danger" *ngIf="form.get('contact').touched && !form.get('contact').valid">
+        <div *ngIf="form.get('contact').hasError('required')">
+          contact is required
+        </div>
+        <div *ngIf="form.get('contact').hasError('minlength')">
+          less digits included
+        </div>
+        <div *ngIf="form.get('contact').hasError('maxlength')">
+          exceeded with more digits
+        </div>
+        <div *ngIf="form.get('contact').hasError('pattern')">
+         invalid contact details
+        </div>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="select">Gender</label>
+      <select id="select">
+        <option>Male</option>
+        <option>Female</option>
+        
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" formControlName="email"/>
+      <div class="alert alert-danger" *ngIf="form.get('email').touched && !form.get('email').valid">
+       <div *ngIf="form.get('email').hasError('required')">
+      email is required
+    </div>
+        <div *ngIf="form.get('email').hasError('pattern')">
+          Enter email in format ex: xyz@mail.com
+        </div>
+
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label>address</label>
+      <input type="text" class="form-control" formControlName="address"/>
+      <div class="alert alert-danger" *ngIf="form.get('address').touched && form.get('address').invalid">
+        <div *ngIf="form.get('address').hasError('required')">
+          address is must
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+    <input type="password" class="form-control" formControlName="psw"/>
+    <div class="alert alert-danger" *ngIf="form.get('psw').touched && form.get('psw').invalid">
+       <div *ngIf="form.get('psw').hasError('required')">
+      password is required
+    </div>
+        <div *ngIf="form.get('psw').hasError('pattern')">
+          Password must contain a <li>uppercase letter</li>
+          <li> diigts</li> 
+          <li> lowercaseletter</li>
+          <li>Atleast 8 chars</li>
+        </div>
+
+    </div>
+  </div>
+
+    <label>
+      <input type="checkbox" checked="checked" style="margin-bottom:5px"> Remember me
+    </label>
+
+    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+    <button type="submit" name="button" >Submit</button>
+  </form>
+  <ul class="list-group">
+    <li *ngFor="let user of userList" class="list-group-item">
+    {{user.name}}
+    </li>
+  </ul>
+
+</div>
+
